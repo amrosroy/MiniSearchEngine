@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include "Trie.h"
 
 using namespace std;
 
@@ -17,8 +18,10 @@ private:
     unordered_map<string,
         unordered_map<string, int>> index;
 
-public:
+    Trie trie;
 
+public:
+    
     void buildIndex(vector<string> files);
 
     void searchWord(string query);
@@ -26,6 +29,9 @@ public:
     string toLowerCase(string word);
 
     void printIndex();
+
+    void suggest(string prefix);
+
 };
 
 #endif

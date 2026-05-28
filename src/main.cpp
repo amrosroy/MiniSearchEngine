@@ -12,20 +12,38 @@ int main()
 
     engine.buildIndex(files);
 
+    cout<<"\n\tWelcome!\n";
+
     while(true)
     {
-        string query;
+        int choice=3;
 
-        cout << "\nEnter word to search (or exit): ";
+        cout << "\nChoose one option from below :\n"<<
+        "1. Exact Search\n"<<
+        "2. Autocomplete\n"<<
+        "3. Exit\n";
 
-        cin >> query;
+        cin>>choice;
 
-        if(query == "exit")
-        {
+        if(choice==3) break;
+
+        if(choice==1){
+            string query;
+            cout<<"Enter the word : ";
+            cin>>query;
+            engine.searchWord(query);
+        }
+        else if(choice==2){
+            string prefix;
+            cout << "Enter prefix: ";
+            cin >> prefix;
+            engine.suggest(prefix);
+        }
+        else{
+            cout<<"\nInvalid choice\n";
             break;
         }
 
-        engine.searchWord(query);
     }
 
     return 0;

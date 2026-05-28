@@ -33,6 +33,7 @@ void SearchEngine::buildIndex(vector<string> files)
             word = toLowerCase(word);
 
             index[word][filename]++;
+            trie.insert(word);
         }
 
         file.close();
@@ -69,8 +70,7 @@ void SearchEngine::searchWord(string query)
             cout << result.first
                  << " ("
                  << result.second
-                 << " matches)"
-                 << endl;
+                 << " matches)\n";
         }
     }
     else
@@ -95,4 +95,9 @@ void SearchEngine::printIndex()
 
         cout << endl;
     }
+}
+
+void SearchEngine::suggest(string prefix)
+{
+    trie.autocomplete(prefix);
 }
